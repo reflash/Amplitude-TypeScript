@@ -259,7 +259,9 @@ export const createEventsStorage = async (overrides?: ReactNativeOptions): Promi
   // then storageProvider is LocalStorage
   // Otherwise storageProvider is overriden
   if (!hasStorageProviderProperty || overrides.storageProvider) {
-    for (const storage of [overrides?.storageProvider, new LocalStorage<Event[]>()]) {
+    const storages = [overrides?.storageProvider, new LocalStorage<Event[]>()];
+    for (var i = 0; i < storages.length; i++) {
+      var storage = storages[i];
       if (storage && (await storage.isEnabled())) {
         return storage;
       }
