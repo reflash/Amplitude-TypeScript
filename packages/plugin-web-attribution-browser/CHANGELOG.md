@@ -3,6 +3,89 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/plugin-web-attribution-browser@2.1.0...@amplitude/plugin-web-attribution-browser@2.1.1) (2024-02-13)
+
+**Note:** Version bump only for package @amplitude/plugin-web-attribution-browser
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.1.0](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/plugin-web-attribution-browser@2.0.18...@amplitude/plugin-web-attribution-browser@2.1.0) (2024-01-24)
+
+### Features
+
+- add offline mode ([#644](https://github.com/amplitude/Amplitude-TypeScript/issues/644))
+  ([f2cd717](https://github.com/amplitude/Amplitude-TypeScript/commit/f2cd717316eef66b101153cb8eedf37fadc6de0c))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.0.18](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/plugin-web-attribution-browser@2.0.17...@amplitude/plugin-web-attribution-browser@2.0.18) (2023-12-20)
+
+### Reverts
+
+- update attribution plugin to apply utm params to the `session_start` event
+  ([#638](https://github.com/amplitude/Amplitude-TypeScript/issues/638))
+  ([c820279](https://github.com/amplitude/Amplitude-TypeScript/commit/c820279cbef2123d890beb7861d7edbbc3926f6e))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.0.17](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/plugin-web-attribution-browser@2.0.16...@amplitude/plugin-web-attribution-browser@2.0.17) (2023-12-12)
+
+**Note:** Version bump only for package @amplitude/plugin-web-attribution-browser
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.0.16](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/plugin-web-attribution-browser@2.0.16-beta.0...@amplitude/plugin-web-attribution-browser@2.0.16) (2023-12-01)
+
+**Note:** Version bump only for package @amplitude/plugin-web-attribution-browser
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.0.16-beta.0](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/plugin-web-attribution-browser@2.0.15...@amplitude/plugin-web-attribution-browser@2.0.16-beta.0) (2023-11-22)
+
+### Bug Fixes
+
+- update attribution plugin to apply utm params to the `session_start` event
+  ([#619](https://github.com/amplitude/Amplitude-TypeScript/issues/619))
+  ([bf45ca6](https://github.com/amplitude/Amplitude-TypeScript/commit/bf45ca6c17ac8d656cb6c5bb4f4fa19ff344ac85))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.0.15](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/plugin-web-attribution-browser@2.0.14...@amplitude/plugin-web-attribution-browser@2.0.15) (2023-11-16)
+
+**Note:** Version bump only for package @amplitude/plugin-web-attribution-browser
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.0.14](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/plugin-web-attribution-browser@2.0.13...@amplitude/plugin-web-attribution-browser@2.0.14) (2023-11-16)
+
+**Note:** Version bump only for package @amplitude/plugin-web-attribution-browser
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.0.13](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/plugin-web-attribution-browser@2.0.12...@amplitude/plugin-web-attribution-browser@2.0.13) (2023-10-18)
 
 **Note:** Version bump only for package @amplitude/plugin-web-attribution-browser

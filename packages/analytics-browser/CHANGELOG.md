@@ -3,6 +3,99 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.1](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-browser@2.4.0...@amplitude/analytics-browser@2.4.1) (2024-02-13)
+
+### Bug Fixes
+
+- should not install page view tracking plugin based on config
+  ([#662](https://github.com/amplitude/Amplitude-TypeScript/issues/662))
+  ([178a7f0](https://github.com/amplitude/Amplitude-TypeScript/commit/178a7f0c7943a1b0fed4855c13cea3ee2376f04d))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.4.0](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-browser@2.3.8...@amplitude/analytics-browser@2.4.0) (2024-01-24)
+
+### Features
+
+- add offline mode ([#644](https://github.com/amplitude/Amplitude-TypeScript/issues/644))
+  ([f2cd717](https://github.com/amplitude/Amplitude-TypeScript/commit/f2cd717316eef66b101153cb8eedf37fadc6de0c))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.3.8](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-browser@2.3.7...@amplitude/analytics-browser@2.3.8) (2023-12-20)
+
+### Reverts
+
+- update attribution plugin to apply utm params to the `session_start` event
+  ([#638](https://github.com/amplitude/Amplitude-TypeScript/issues/638))
+  ([c820279](https://github.com/amplitude/Amplitude-TypeScript/commit/c820279cbef2123d890beb7861d7edbbc3926f6e))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.3.7](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-browser@2.3.6...@amplitude/analytics-browser@2.3.7) (2023-12-12)
+
+### Bug Fixes
+
+- ignore non-string form.id ([#629](https://github.com/amplitude/Amplitude-TypeScript/issues/629))
+  ([690af77](https://github.com/amplitude/Amplitude-TypeScript/commit/690af774d9bc36c6c4a76311a9bbe189c1a698d1))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.3.6](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-browser@2.3.6-beta.0...@amplitude/analytics-browser@2.3.6) (2023-12-01)
+
+**Note:** Version bump only for package @amplitude/analytics-browser
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.3.6-beta.0](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-browser@2.3.5...@amplitude/analytics-browser@2.3.6-beta.0) (2023-11-22)
+
+### Bug Fixes
+
+- update attribution plugin to apply utm params to the `session_start` event
+  ([#619](https://github.com/amplitude/Amplitude-TypeScript/issues/619))
+  ([bf45ca6](https://github.com/amplitude/Amplitude-TypeScript/commit/bf45ca6c17ac8d656cb6c5bb4f4fa19ff344ac85))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.3.5](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-browser@2.3.4...@amplitude/analytics-browser@2.3.5) (2023-11-16)
+
+**Note:** Version bump only for package @amplitude/analytics-browser
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.3.4](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-browser@2.3.3...@amplitude/analytics-browser@2.3.4) (2023-11-16)
+
+### Bug Fixes
+
+- npm latest tag ([#623](https://github.com/amplitude/Amplitude-TypeScript/issues/623))
+  ([7b2b6d1](https://github.com/amplitude/Amplitude-TypeScript/commit/7b2b6d111592a277039101913072c19a724fa199))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.3.3](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-browser@2.3.2...@amplitude/analytics-browser@2.3.3) (2023-10-18)
 
 **Note:** Version bump only for package @amplitude/analytics-browser

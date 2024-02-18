@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-core@2.1.3...@amplitude/analytics-core@2.2.0) (2024-01-24)
+
+### Features
+
+- add offline mode ([#644](https://github.com/amplitude/Amplitude-TypeScript/issues/644))
+  ([f2cd717](https://github.com/amplitude/Amplitude-TypeScript/commit/f2cd717316eef66b101153cb8eedf37fadc6de0c))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.1.3](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-core@2.1.2...@amplitude/analytics-core@2.1.3) (2023-12-20)
+
+### Reverts
+
+- update attribution plugin to apply utm params to the `session_start` event
+  ([#638](https://github.com/amplitude/Amplitude-TypeScript/issues/638))
+  ([c820279](https://github.com/amplitude/Amplitude-TypeScript/commit/c820279cbef2123d890beb7861d7edbbc3926f6e))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.1.2](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-core@2.1.2-beta.0...@amplitude/analytics-core@2.1.2) (2023-12-01)
+
+**Note:** Version bump only for package @amplitude/analytics-core
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.1.2-beta.0](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-core@2.1.1...@amplitude/analytics-core@2.1.2-beta.0) (2023-11-22)
+
+### Bug Fixes
+
+- update attribution plugin to apply utm params to the `session_start` event
+  ([#619](https://github.com/amplitude/Amplitude-TypeScript/issues/619))
+  ([bf45ca6](https://github.com/amplitude/Amplitude-TypeScript/commit/bf45ca6c17ac8d656cb6c5bb4f4fa19ff344ac85))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.1.1](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-core@2.1.0...@amplitude/analytics-core@2.1.1) (2023-11-16)
+
+### Bug Fixes
+
+- npm latest tags ([#624](https://github.com/amplitude/Amplitude-TypeScript/issues/624))
+  ([76bf7a4](https://github.com/amplitude/Amplitude-TypeScript/commit/76bf7a4c871375649fac45d549b711ac52c16b0d))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [2.1.0](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-core@2.0.5...@amplitude/analytics-core@2.1.0) (2023-10-18)
 
 ### Features

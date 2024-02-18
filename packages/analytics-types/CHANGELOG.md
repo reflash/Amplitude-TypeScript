@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-types@2.3.1...@amplitude/analytics-types@2.4.0) (2024-01-24)
+
+### Features
+
+- add offline mode ([#644](https://github.com/amplitude/Amplitude-TypeScript/issues/644))
+  ([f2cd717](https://github.com/amplitude/Amplitude-TypeScript/commit/f2cd717316eef66b101153cb8eedf37fadc6de0c))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.3.1](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-types@2.3.0...@amplitude/analytics-types@2.3.1) (2023-11-16)
+
+### Bug Fixes
+
+- npm latest tags ([#624](https://github.com/amplitude/Amplitude-TypeScript/issues/624))
+  ([76bf7a4](https://github.com/amplitude/Amplitude-TypeScript/commit/76bf7a4c871375649fac45d549b711ac52c16b0d))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [2.3.0](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-types@2.2.0...@amplitude/analytics-types@2.3.0) (2023-10-18)
 
 ### Features

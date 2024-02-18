@@ -11,6 +11,7 @@ import {
   setConnectorDeviceId,
   setConnectorUserId,
   isNewSession,
+  isPageViewTrackingEnabled,
 } from '@amplitude/analytics-client-common';
 import {
   BrowserClient,
@@ -21,6 +22,7 @@ import {
   Identify as IIdentify,
   Revenue as IRevenue,
   TransportType,
+  OfflineDisabled,
 } from '@amplitude/analytics-types';
 import { convertProxyObjectToRealObject, isInstanceProxy } from './utils/snippet-helper';
 import { Context } from './plugins/context';
@@ -31,6 +33,7 @@ import { formInteractionTracking } from './plugins/form-interaction-tracking';
 import { fileDownloadTracking } from './plugins/file-download-tracking';
 import { DEFAULT_SESSION_END_EVENT, DEFAULT_SESSION_START_EVENT } from './constants';
 import { detNotify } from './det-notification';
+import { networkConnectivityCheckerPlugin } from './plugins/network-connectivity-checker';
 
 export class AmplitudeBrowser extends AmplitudeCore implements BrowserClient {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -86,6 +89,9 @@ export class AmplitudeBrowser extends AmplitudeCore implements BrowserClient {
 
     // Step 4: Install plugins
     // Do not track any events before this
+    if (this.config.offline !== OfflineDisabled) {
+      await this.add(networkConnectivityCheckerPlugin()).promise;
+    }
     await this.add(new Destination()).promise;
     await this.add(new Context()).promise;
     await this.add(new IdentityEventSender()).promise;
@@ -109,7 +115,9 @@ export class AmplitudeBrowser extends AmplitudeCore implements BrowserClient {
     }
 
     // Add page view plugin
-    await this.add(pageViewTrackingPlugin(getPageViewTrackingConfig(this.config))).promise;
+    if (isPageViewTrackingEnabled(this.config.defaultTracking)) {
+      await this.add(pageViewTrackingPlugin(getPageViewTrackingConfig(this.config))).promise;
+    }
 
     this.initializing = false;
 
