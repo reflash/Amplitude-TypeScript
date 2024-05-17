@@ -3,6 +3,98 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.6](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-client-common@2.1.5...@amplitude/analytics-client-common@2.1.6) (2024-05-15)
+
+**Note:** Version bump only for package @amplitude/analytics-client-common
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.1.5](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-client-common@2.1.4...@amplitude/analytics-client-common@2.1.5) (2024-05-03)
+
+**Note:** Version bump only for package @amplitude/analytics-client-common
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.1.4](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-client-common@2.1.4-beta.0...@amplitude/analytics-client-common@2.1.4) (2024-04-29)
+
+### Bug Fixes
+
+- add logic to escape campaign tracking for direct traffic in session
+  ([#726](https://github.com/amplitude/Amplitude-TypeScript/issues/726))
+  ([c0c9a9d](https://github.com/amplitude/Amplitude-TypeScript/commit/c0c9a9d3fcd2a9d6dfe9e12d4a187cf2dba6424c))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.1.4-beta.0](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-client-common@2.1.3...@amplitude/analytics-client-common@2.1.4-beta.0) (2024-04-19)
+
+### Bug Fixes
+
+- fix web attribution identify and session start order
+  ([#696](https://github.com/amplitude/Amplitude-TypeScript/issues/696))
+  ([2f077da](https://github.com/amplitude/Amplitude-TypeScript/commit/2f077da7b528ed6f23f7459b7c961c099dbcb1bb))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.1.3](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-client-common@2.1.3-beta.0...@amplitude/analytics-client-common@2.1.3) (2024-04-09)
+
+**Note:** Version bump only for package @amplitude/analytics-client-common
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.1.3-beta.0](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-client-common@2.1.2...@amplitude/analytics-client-common@2.1.3-beta.0) (2024-03-28)
+
+**Note:** Version bump only for package @amplitude/analytics-client-common
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.1.2](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-client-common@2.1.1...@amplitude/analytics-client-common@2.1.2) (2024-03-23)
+
+**Note:** Version bump only for package @amplitude/analytics-client-common
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.1.1](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-client-common@2.1.0...@amplitude/analytics-client-common@2.1.1) (2024-03-12)
+
+**Note:** Version bump only for package @amplitude/analytics-client-common
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.1.0](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-client-common@2.0.11...@amplitude/analytics-client-common@2.1.0) (2024-02-23)
+
+### Features
+
+- landing page improvement ([#667](https://github.com/amplitude/Amplitude-TypeScript/issues/667))
+  ([5f365f0](https://github.com/amplitude/Amplitude-TypeScript/commit/5f365f0b933ee890aee1d9ac083576f09b0defc3))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.0.11](https://github.com/amplitude/Amplitude-TypeScript/compare/@amplitude/analytics-client-common@2.0.10...@amplitude/analytics-client-common@2.0.11) (2024-01-24)
 
 **Note:** Version bump only for package @amplitude/analytics-client-common

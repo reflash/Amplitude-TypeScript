@@ -46,15 +46,15 @@
     amplitude.invoked = true;
     var s = document.getElementsByTagName('script')[0];
     var autoTrackingPluginScript = document.createElement('script');
-    autoTrackingPluginScript.src = 'https://cdn.amplitude.com/libs/plugin-auto-tracking-browser-0.1.1-min.js.gz';
+    autoTrackingPluginScript.src = 'https://cdn.amplitude.com/libs/plugin-autocapture-browser-0.9.0-min.js.gz';
     autoTrackingPluginScript.async = false;
     s.parentNode.insertBefore(autoTrackingPluginScript, s);
     var as = document.createElement('script');
     as.type = 'text/javascript';
-    as.integrity = 'sha384-2k2X3w99Z5Uj5Sc0lWC9jy7N/ej+XBzXS9mU6cis7m5oPeM+RjaPtLzz2NPuuw/U';
+    as.integrity = 'sha384-NSThuDn01nofJC4sa9ebvCAS/d4FlWwKubRD57HN7W1eb8DWbRkROeIO8aL78ljx';
     as.crossOrigin = 'anonymous';
     as.async = false;
-    as.src = 'https://cdn.amplitude.com/libs/analytics-browser-2.4.1-min.js.gz';
+    as.src = 'https://cdn.amplitude.com/libs/analytics-browser-2.7.3-min.js.gz';
     as.onload = function () {
       if (!window.amplitude.runQueuedFunctions) {
         console.log('[Amplitude] Error: could not load SDK');
@@ -68,8 +68,8 @@
         },
         optOut: false
       });
-      if (amplitudeAutoTrackingPlugin && amplitudeAutoTrackingPlugin.autoTrackingPlugin && typeof amplitudeAutoTrackingPlugin.autoTrackingPlugin === 'function') {
-        window.amplitude.add(amplitudeAutoTrackingPlugin.autoTrackingPlugin());
+      if (amplitudeAutocapturePlugin && amplitudeAutocapturePlugin.autocapturePlugin && typeof amplitudeAutocapturePlugin.autocapturePlugin === 'function') {
+        window.amplitude.add(amplitudeAutocapturePlugin.autocapturePlugin());
       }
       alert('Amplitude is now tracking events!');
     };

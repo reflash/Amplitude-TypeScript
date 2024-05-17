@@ -1,21 +1,22 @@
-import { AmplitudeBrowser } from '../src/browser-client';
-import * as core from '@amplitude/analytics-core';
-import * as Config from '../src/config';
-import * as CookieMigration from '../src/cookie-migration';
-import { OfflineDisabled, UserSession } from '@amplitude/analytics-types';
+import * as AnalyticsClientCommon from '@amplitude/analytics-client-common';
 import {
   CookieStorage,
   FetchTransport,
   getAnalyticsConnector,
   getCookieName,
 } from '@amplitude/analytics-client-common';
-import * as SnippetHelper from '../src/utils/snippet-helper';
-import * as AnalyticsClientCommon from '@amplitude/analytics-client-common';
+import { WebAttribution } from '@amplitude/analytics-client-common/src';
+import * as core from '@amplitude/analytics-core';
+import { Logger, UUID } from '@amplitude/analytics-core';
+import { BrowserConfig, LogLevel, OfflineDisabled, UserSession } from '@amplitude/analytics-types';
+import * as pageViewTracking from '@amplitude/plugin-page-view-tracking-browser';
+import { AmplitudeBrowser } from '../src/browser-client';
+import * as Config from '../src/config';
+import * as CookieMigration from '../src/cookie-migration';
 import * as fileDownloadTracking from '../src/plugins/file-download-tracking';
 import * as formInteractionTracking from '../src/plugins/form-interaction-tracking';
-import * as webAttributionPlugin from '@amplitude/plugin-web-attribution-browser';
 import * as networkConnectivityChecker from '../src/plugins/network-connectivity-checker';
-import * as pageViewTracking from '@amplitude/plugin-page-view-tracking-browser';
+import * as SnippetHelper from '../src/utils/snippet-helper';
 
 describe('browser-client', () => {
   let apiKey = '';
@@ -237,32 +238,6 @@ describe('browser-client', () => {
       }).promise;
       expect(fileDownloadTrackingPlugin).toHaveBeenCalledTimes(0);
       expect(formInteractionTrackingPlugin).toHaveBeenCalledTimes(0);
-    });
-
-    test('should add web attribution tracking plugin', async () => {
-      jest.spyOn(CookieMigration, 'parseLegacyCookies').mockResolvedValueOnce({
-        optOut: false,
-        lastEventTime: Date.now(),
-      });
-      const webAttributionPluginPlugin = jest.spyOn(webAttributionPlugin, 'webAttributionPlugin');
-      jest.spyOn(client, 'dispatch').mockReturnValueOnce(
-        Promise.resolve({
-          code: 200,
-          message: '',
-          event: {
-            event_type: 'event_type',
-          },
-        }),
-      );
-      await client.init(apiKey, userId, {
-        optOut: false,
-        defaultTracking: {
-          ...defaultTracking,
-          attribution: {},
-        },
-        sessionId: Date.now(),
-      }).promise;
-      expect(webAttributionPluginPlugin).toHaveBeenCalledTimes(1);
     });
 
     test('should add network connectivity checker plugin by default', async () => {
@@ -620,6 +595,44 @@ describe('browser-client', () => {
       expect(track).toHaveBeenCalledTimes(2);
     });
 
+    test('should set session id with start and end session event and web attribution event', async () => {
+      jest.spyOn(CookieMigration, 'parseLegacyCookies').mockResolvedValueOnce({
+        optOut: false,
+        sessionId: 1,
+        lastEventId: 100,
+        lastEventTime: Date.now() - 1000,
+      });
+      const result = {
+        promise: Promise.resolve({
+          code: 200,
+          event: {
+            event_type: 'a',
+          },
+          message: 'success',
+        }),
+      };
+      const track = jest.spyOn(client, 'track').mockReturnValue(result);
+      await client.init(apiKey, {
+        sessionTimeout: 5000,
+        defaultTracking: {
+          ...defaultTracking,
+          attribution: true,
+          pageViews: false,
+          sessions: true,
+        },
+      }).promise;
+
+      client.setSessionId(2);
+
+      expect(client.getSessionId()).toBe(2);
+      return new Promise<void>((resolve) => {
+        setTimeout(() => {
+          expect(track).toHaveBeenCalledTimes(3);
+          resolve();
+        }, 4000);
+      });
+    });
+
     test('should defer set session id', () => {
       return new Promise<void>((resolve) => {
         void client.init(apiKey, { defaultTracking }).promise.then(() => {
@@ -672,7 +685,7 @@ describe('browser-client', () => {
         setTimeout(async () => {
           await client.track('test 2').promise;
           resolve();
-        }, 15),
+        }, 10),
       );
 
       // assert session id is unchanged
@@ -747,6 +760,21 @@ describe('browser-client', () => {
       expect(client.config.sessionId).toBe(1);
       // assert last event time was updated
       expect(client.config.lastEventTime).toBe(lastEventTime);
+    });
+  });
+
+  describe('pageCount', () => {
+    test('init pageCounter should be 0', async () => {
+      await client.init(apiKey, { defaultTracking }).promise;
+      expect(client.config.pageCounter).toBe(0);
+    });
+
+    test('should set pageCounter to 0 in new session', async () => {
+      await client.init(apiKey, { defaultTracking }).promise;
+      client.config.pageCounter = 2;
+      expect(client.config.pageCounter).toBe(2);
+      client.setSessionId(Date.now() + 5 * 60 * 60);
+      expect(client.config.pageCounter).toBe(0);
     });
   });
 
@@ -917,6 +945,97 @@ describe('browser-client', () => {
   });
 
   describe('process', () => {
+    test('should process create new session for new campain', async () => {
+      await client.init(apiKey, {
+        optOut: true,
+        logLevel: LogLevel.Warn,
+        defaultTracking: {
+          attribution: {
+            resetSessionOnNewCampaign: true,
+          },
+        },
+      }).promise;
+
+      expect(client.webAttribution).toBeDefined();
+
+      // Making sure client.webAttribution is not undefined
+      if (!client.webAttribution) {
+        client.webAttribution = new WebAttribution({}, client.config);
+      }
+      jest.spyOn(client.webAttribution, 'shouldSetSessionIdOnNewCampaign').mockReturnValueOnce(true);
+      const logSpy = jest.spyOn(client.config.loggerProvider, 'log');
+
+      await client.process({
+        event_type: 'event',
+      });
+
+      expect(logSpy).toHaveBeenCalledWith('Created a new session for new campaign.');
+    });
+    test('should track web attribution if change in campaign information', async () => {
+      const track = jest.spyOn(client, 'dispatch').mockReturnValue(
+        Promise.resolve({
+          code: 200,
+          message: '',
+          event: {
+            event_type: 'event_type',
+          },
+        }),
+      );
+      await client.init(apiKey, {
+        optOut: true,
+        logLevel: LogLevel.Warn,
+        defaultTracking: {
+          attribution: {
+            resetSessionOnNewCampaign: true,
+          },
+        },
+      }).promise;
+
+      client.webAttribution = new WebAttribution({}, { ...client.config, lastEventTime: undefined });
+      client.webAttribution.shouldTrackNewCampaign = true;
+      jest.spyOn(AnalyticsClientCommon, 'isNewSession').mockReturnValueOnce(false);
+      await client.process({
+        event_type: 'event',
+      });
+      expect(track).toHaveBeenCalled();
+    });
+
+    test('should reinit web attribution when procee new session event', async () => {
+      const mockConfig: BrowserConfig = {
+        apiKey: UUID(),
+        flushIntervalMillis: 0,
+        flushMaxRetries: 0,
+        flushQueueSize: 0,
+        logLevel: LogLevel.None,
+        loggerProvider: new Logger(),
+        offline: false,
+        optOut: false,
+        serverUrl: undefined,
+        transportProvider: new FetchTransport(),
+        useBatch: false,
+        cookieOptions: undefined,
+        cookieStorage: new CookieStorage(),
+        sessionTimeout: 30 * 60 * 1000,
+        trackingOptions: {
+          ipAddress: true,
+          language: true,
+          platform: true,
+        },
+        lastEventTime: Date.now() - 30 * 60 * 1000 * 2,
+      };
+      const webAttribution = new WebAttribution({}, mockConfig);
+      client.config = mockConfig;
+      client.webAttribution = webAttribution;
+      const webAttributionInit = jest.spyOn(webAttribution, 'init');
+      const setSessionId = jest.spyOn(client, 'setSessionId');
+
+      //new session event
+      await client.process({ event_type: 'test event' });
+
+      expect(webAttributionInit).toHaveBeenCalledTimes(1);
+      expect(setSessionId).toHaveBeenCalledTimes(1);
+    });
+
     test('should proceed with unexpired session', async () => {
       const setSessionId = jest.spyOn(client, 'setSessionId');
       await client.init(apiKey, {

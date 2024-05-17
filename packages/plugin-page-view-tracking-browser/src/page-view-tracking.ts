@@ -12,15 +12,19 @@ import { BASE_CAMPAIGN } from '@amplitude/analytics-client-common';
 import { CreatePageViewTrackingPlugin, Options } from './typings/page-view-tracking';
 import { omitUndefined } from './utils';
 
+export const defaultPageViewEvent = '[Amplitude] Page Viewed';
+
 export const pageViewTrackingPlugin: CreatePageViewTrackingPlugin = (options: Options = {}) => {
   let amplitude: BrowserClient | undefined;
   const globalScope = getGlobalScope();
   let loggerProvider: Logger | undefined = undefined;
   let pushState: undefined | ((data: any, unused: string, url?: string | URL | null) => void);
+  let localConfig: BrowserConfig;
+  const { trackOn, trackHistoryChanges, eventType = defaultPageViewEvent } = options;
 
   const createPageViewEvent = async (): Promise<Event> => {
     return {
-      event_type: options.eventType ?? '[Amplitude] Page Viewed',
+      event_type: eventType,
       event_properties: {
         ...(await getCampaignParams()),
         '[Amplitude] Page Domain':
@@ -36,8 +40,7 @@ export const pageViewTrackingPlugin: CreatePageViewTrackingPlugin = (options: Op
     };
   };
 
-  const shouldTrackOnPageLoad = () =>
-    typeof options.trackOn === 'undefined' || (typeof options.trackOn === 'function' && options.trackOn());
+  const shouldTrackOnPageLoad = () => typeof trackOn === 'undefined' || (typeof trackOn === 'function' && trackOn());
 
   /* istanbul ignore next */
   let previousURL: string | null = typeof location !== 'undefined' ? location.href : null;
@@ -45,7 +48,7 @@ export const pageViewTrackingPlugin: CreatePageViewTrackingPlugin = (options: Op
   const trackHistoryPageView = async (): Promise<void> => {
     const newURL = location.href;
     const shouldTrackPageView =
-      shouldTrackHistoryPageView(options.trackHistoryChanges, newURL, previousURL || '') && shouldTrackOnPageLoad();
+      shouldTrackHistoryPageView(trackHistoryChanges, newURL, previousURL || '') && shouldTrackOnPageLoad();
     // Note: Update `previousURL` in the same clock tick as `shouldTrackHistoryPageView()`
     // This was previously done after `amplitude?.track(await createPageViewEvent());` and
     // causes a concurrency issue where app triggers `pushState` twice with the same URL target
@@ -70,6 +73,7 @@ export const pageViewTrackingPlugin: CreatePageViewTrackingPlugin = (options: Op
 
     setup: async (config: BrowserConfig, client: BrowserClient) => {
       amplitude = client;
+      localConfig = config;
 
       loggerProvider = config.loggerProvider;
       loggerProvider.log('Installing @amplitude/plugin-page-view-tracking-browser');
@@ -102,7 +106,7 @@ export const pageViewTrackingPlugin: CreatePageViewTrackingPlugin = (options: Op
     },
 
     execute: async (event: Event) => {
-      if (options.trackOn === 'attribution' && isCampaignEvent(event)) {
+      if (trackOn === 'attribution' && isCampaignEvent(event)) {
         /* istanbul ignore next */ // loggerProvider should be defined by the time execute is invoked
         loggerProvider?.log('Enriching campaign event to page view event with campaign parameters');
         const pageViewEvent = await createPageViewEvent();
@@ -110,6 +114,15 @@ export const pageViewTrackingPlugin: CreatePageViewTrackingPlugin = (options: Op
         event.event_properties = {
           ...event.event_properties,
           ...pageViewEvent.event_properties,
+        };
+      }
+
+      // Update the pageCounter for the page view event
+      if (localConfig && event.event_type === eventType) {
+        localConfig.pageCounter = !localConfig.pageCounter ? 1 : localConfig.pageCounter + 1;
+        event.event_properties = {
+          ...event.event_properties,
+          '[Amplitude] Page Counter': localConfig.pageCounter,
         };
       }
       return event;
